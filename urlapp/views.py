@@ -5,8 +5,10 @@ from .models import UrlEntry
 
 # Create your views here.
 
+
 def index(request):
     return render(request, 'index.html')
+
 
 def shorten_url(request) -> HttpResponse:
     if request.method == "GET":
@@ -14,18 +16,17 @@ def shorten_url(request) -> HttpResponse:
 
         if incoming.get('base_url'):
             base_url = incoming.get('base_url')
-            
-            if UrlEntry.objects.filter(full_url=base_url).exists():
-                return JsonResponse({
-                'url': request.get_host() + "/" + UrlEntry.objects.filter(full_url=base_url).first().url_hash
-            }, status=200)
-            
-            url = UrlEntry(full_url=base_url)
-            url.save()
+
+            # if URL doesnt already exist in database
+            if UrlEntry.objects.filter(full_url=base_url).exists() == False:
+                url = UrlEntry(full_url=base_url)
+                url.save()
 
             return JsonResponse({
                 'url': "shwt.tk/" + UrlEntry.objects.order_by('created_at').last().url_hash
+                # 'url': request.get_host() + "/" + UrlEntry.objects.order_by('created_at').last().url_hash
             }, status=200)
+
 
 def root(request, url_hash):
     url = get_object_or_404(UrlEntry, url_hash=url_hash)
