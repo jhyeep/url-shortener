@@ -24,7 +24,7 @@ def shorten_url(request) -> HttpResponse:
             url.save()
 
             return JsonResponse({
-                'url': request.get_host() + "/" + UrlEntry.objects.order_by('created_at').last().url_hash
+                'url': "shwt.tk/" + UrlEntry.objects.order_by('created_at').last().url_hash
             }, status=200)
 
 def root(request, url_hash):

@@ -11,7 +11,6 @@ $(document).ready(function () {
                 data: {base_url: entered_url},
                 success: function (response) {
                     let link = response.url;
-                    console.log(link);
                     $("#short_url").text(link);
                     $("#short_url").attr("href", "http://" + link);
                 },
