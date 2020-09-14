@@ -10,9 +10,10 @@ $(document).ready(function () {
                 url: "shorten_url",
                 data: {base_url: entered_url},
                 success: function (response) {
-                    let link = response.url
+                    let link = response.url;
+                    console.log(link);
                     $("#short_url").text(link);
-                    $("#short_url").attr("href", link);
+                    $("#short_url").attr("href", "http://" + link);
                 },
                 error: function (response) {
                 console.log(response);
