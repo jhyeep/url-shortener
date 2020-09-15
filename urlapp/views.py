@@ -17,7 +17,7 @@ def shorten_url(request) -> HttpResponse:
         if incoming.get('base_url'):
             base_url = incoming.get('base_url')
 
-            # if URL doesnt already exist in database
+            # if URL doesnt already exist in database, create new
             if UrlEntry.objects.filter(full_url=base_url).exists() == False:
                 url = UrlEntry(full_url=base_url)
                 url.save()
