@@ -23,7 +23,7 @@ def shorten_url(request) -> HttpResponse:
                 url.save()
 
             return JsonResponse({
-                'url': request.get_host() + "/" + UrlEntry.objects.order_by('created_at').last().url_hash
+                'url': request.get_host() + "/" + UrlEntry.objects.filter(full_url=base_url).last().url_hash
             }, status=200)
 
 
