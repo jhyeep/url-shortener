@@ -1,6 +1,6 @@
 # URL Shortener
 
-A simple URL shortener web app made with Django. Deployed on http://jh3.herokuapp.com/.
+A simple URL shortener web app made with Django.
 
 ## More Info
 
